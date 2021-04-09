@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string.h>
-#include<stdlib.h>>
+#include<stdlib.h>
 #include<stdio.h>
 using namespace std;
 struct node{
@@ -201,7 +201,7 @@ public:
         }
     }
     void del(){
-        if(head == NULL){
+        if(head == NULL) {
             cout<<"\n\t\tList is empty"<<endl;
             cout<<"\n\t\tAdd a new record\n\tPress Y or N:";
             cin>>ch;
@@ -211,27 +211,33 @@ public:
             }
         }
         else{
-           int val;
-           cout<<"\n\t\tEnter employee id which you want to delete:";
-           cin>>val;
-           node *temp = head;
-           if(val == 1){
-            head = temp->next;
-           }
-           for(int i = 0;i<val-2;i++){
-            temp = temp->next;
-           }
-           node *temp1,*temp2;
-           temp1 = temp->prev;
-           temp2 = temp->next;
-           temp->next = temp2->next;
-           delete temp2;
-           cout<<"Record Deleted Successfully"<<endl;
+            int val;
+            cout<<"\n\t\tEnter employee id which you want to delete:";
+            cin>>val;
+            node *temp = head;
+            if (temp!=NULL && temp->id==val) {
+                head = temp->next;
+                delete temp;
+            }
 
-    }
+            else {
+                while(temp->id!=val) {
+                    temp = temp->next;
+                }
+
+                node *temp1,*temp2;
+                temp1 = temp->prev;
+                temp2 = temp->next;
+                temp->next = temp2->next;
+                delete temp2;
+            }
+            
+            cout<<"Record Deleted Successfully"<<endl;
+
+        }
     }
 
-    void show(){
+    void show() {
         if(head == NULL){
             cout<<"\n\t\tList is empty"<<endl;
             cout<<"\n\t\tDo you want to add a record\n\tPress Y or N :";
